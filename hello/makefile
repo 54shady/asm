@@ -1,4 +1,4 @@
-all:hello hello2 hello3
+all:hello hello2 hello3 hello4
 
 # 默认情况下gcc会生成pie(Position Independent Executable)代码
 # 目的是为了防止黑客调查程序使用内存并干扰程序运行
@@ -13,6 +13,9 @@ hello2: hello2.o
 hello3: hello3.o
 	gcc -o hello3 hello3.o -no-pie
 
+hello4: hello4.o
+	gcc -o hello4 hello4.o -no-pie
+
 # 使用nasm汇编器
 # -f elf64 : 输出64位可执行可链接格式executable link format
 # -g -F dwarf : 希望以-F 后制定的dwarf(Debug With Arbitrary Record Format)输出调试格式
@@ -26,5 +29,8 @@ hello2.o: hello2.asm
 hello3.o: hello3.asm
 	nasm -f elf64 -g -F dwarf hello3.asm -l hello3.lst
 
+hello4.o: hello4.asm
+	nasm -f elf64 -g -F dwarf hello4.asm -l hello4.lst
+
 clean:
-	rm -rf *.o *.lst hello hello2 hello3
+	rm -rf *.o *.lst hello hello2 hello3 hello4
