@@ -159,3 +159,12 @@ mov指令格式如下
 
 - 可以将序言替换成enter 0, 0 ;enter性能差
 - 可以将尾声替换成leave
+
+## SIMD, MMX, SSE, AVX
+
+- SIMD(Single Instruction Multiple Data)
+- SIMD的一个实现是MMX(多媒体扩展, 多重数学扩展, 矩阵数学扩展)
+- SSE(Streaming SIMD Extension)
+- MMX被SSE取代, SSE又被AVX(Advanced Vector Extension)取代
+- 支持SSE功能的处理器有16个额外的128位寄存器xmm0~xmm15和一个控制状态寄存器mxcsr
+- AVX寄存器(ymm, 256位)大小是xmm的两倍,还有AVX-512(zmm 512位)
