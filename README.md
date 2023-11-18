@@ -2,6 +2,16 @@
 
 参考书: Beginning x64 Assembly Programming(From Novice to AVX Professional)
 
+## 寄存器
+
+以寄存器A为例说明各位数关系
+
+	RAX	64bit
+	EAX 32bit
+	AX	16bit
+	AXH	8bit high
+	AXL 8bit low
+
 ## .data段
 
 格式如下
@@ -48,7 +58,9 @@ resq	64bit	quad word
 
 ## 指令
 
-mov指令格式如下
+### Intel语法
+
+mov指令格式如下(像是c语言)
 
 	mov destination, source
 
@@ -59,6 +71,42 @@ mov指令格式如下
 使用gdb时可以通过如下来设置汇编风格intel或AT&T
 
 (gdb) set disassembly-flavor intel
+
+### AT&T语法
+
+AT&T的语法正好相反,类似linux命令
+
+	mov source, destination
+
+寻址方式:
+
+1. 寄存器寻址(Register mode):操作的是寄存器,不和内存打交道
+
+	movl %eax, %edx ;把eax寄存器内容放到寄存器edx中
+	相当于c语言里edx = eax
+
+2. 立即寻址(immediate)用一个$符号开头跟一个数
+
+	movl $0x123, %edx ;把0x123这个数放到寄存器edx中
+	相当于c语言里edx = 0x123
+
+3. 直接寻址(direct),开头不带$符号,表示地址值(用内存地址直接访问内存数据)
+
+	movl 0x123, %edx ;把内存地址为0x123里存储的数据放到edx寄存器中
+	相当于c语言里edx = *(int *)0x123
+
+4. 间接寻址(indirect)
+
+	movl (%ebx), %edx
+
+	ebx寄存器中存储的是内存的地址
+	加括号来获取这个内存地址所存储的数据
+	相当于c语言里edx = *(int *)ebx
+
+5. 变地寻址(displaced)
+
+	movl 4(%ebx), %edx
+	相当于c语言里edx = *(int *)(ebx+4)
 
 ## lst文件
 
