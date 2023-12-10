@@ -2,8 +2,8 @@
 #include <time.h>
 
 /*
- * gcc time64.c -o time64 -masm=intel
- * gcc time64.c -o time64 -masm=intel -no-pie
+ * gcc time-syscall-intel.c -o time-syscall-intel -masm=intel
+ * gcc time-syscall-intel.c -o time-syscall-intel -masm=intel -no-pie
  */
 int main(int argc, char *argv[])
 {
